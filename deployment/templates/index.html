@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bike Sharing Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Bike Sharing Prediction</h1>
+    <form method="POST" action="/predict">
+
+        <label for="season">Season (1:Spring, 2:Summer, 3:Fall, 4:Winter) :</label>
+        <input type="text" name="season" required><br>
+        
+        <label for="year">Year (0: 2011, 1:2012) :</label>
+        <input type="text" name="year" required><br>
+
+        <label for="month">Month (1 to 12) :</label>
+        <input type="text" name="month" required><br>
+        
+        <label for="hour">Hour (0 to 23) :</label>
+        <input type="text" name="hour" required><br>
+
+        <label for="holiday">Holiday (1:Yes, 0:No) :</label>
+        <input type="text" name="holiday" required><br>
+
+        <label for="weekday">Weekday (0-Sunday, 1-Monday, 2-Tuesday, 3-Wednesday, 4-Thursday, 5-Friday, 6-Saturday) :</label>
+        <input type="text" name="weekday" required><br>
+
+        <label for="working_day">Working day (1-Yes, 0-No[weekend or holiday]) :</label>
+        <input type="text" name="working_day" required><br>
+
+        <label for="weathers_it">Weather (1 - Clear, 2 - Mist + Cloudy, 3 - Light snow/Light rain, 4 - Heavy rain/Heavy snow) :</label>
+        <input type="text" name="weathers_it" required><br>
+        
+        <!-- t_min=-8, t_max=+39 -->
+        <label for="temp">Temperature (Normalized temperature in Celsius {actual temperature=normalized value×(t_max−t_min)+t_min}):</label>
+        <input type="text" name="temp" required><br>
+
+        <!-- t_min=-16, t_max=+50 -->
+        <label for="atemp">Feels like temperature (Normalized feeling temperature in Celsius {actual temperature=normalized value×(t_max−t_min)+t_min}) :</label>
+        <input type="text" name="atemp" required><br>
+
+        <label for="humidity">Humidity (Normalized humidity (0 to 1)) :</label>
+        <input type="text" name="humidity" required><br>
+
+        <label for="windspeed">Windspeed (Normalized wind speed (0 to 1)) :</label>
+        <input type="text" name="windspeed" required><br>
+        
+        <input type="submit" value="Predict">
+    </form>
+    
+    {% if prediction %}
+    <p>{{ prediction }}</p>
+    {% endif %}
+</body>
+</html>
